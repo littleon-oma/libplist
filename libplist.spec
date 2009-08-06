@@ -1,6 +1,6 @@
 %define name libplist
 %define version 0.13
-%define release %mkrel 1
+%define release %mkrel 2
 %define major 0
 %define libname %mklibname plist %major
 %define libnamedev %mklibname -d plist
@@ -41,7 +41,7 @@ Provides: %name-devel = %version-%release
 %description -n %libnamedev
 %{name}, development headers and libraries.
 
-%package python
+%package -n python-plist
 Summary: Python package for libplist
 Group: Development/Python
 %py_requires -d
@@ -49,7 +49,7 @@ Requires: python
 BuildRequires: python-devel
 BuildRequires: swig
 
-%description python
+%description -n python-plist
 %{name}, python libraries and support
 
 %prep
@@ -97,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libplist.so
 %{_includedir}/plist
 
-%files python
+%files -n python-plist
 %defattr(-,root,root,-)
 %{python_sitearch}/libplist
 
