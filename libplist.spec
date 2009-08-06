@@ -10,7 +10,7 @@ Version:        %{version}
 Release:        %mkrel 1
 Summary:        Library for manipulating Apple Binary and XML Property Lists
 
-Group:          System Environment/Libraries
+Group:          System/Libraries
 License:        LGPLv2+
 URL:            http://matt.colyer.name/projects/iphone-linux/
 
@@ -34,7 +34,7 @@ libplist is a library for manipulating Apple Binary and XML Property Lists
 
 %package -n %libnamedev
 Summary: Development package for libplist
-Group: Development/Libraries
+Group: Development/C
 Requires: %libname = %version
 Provides: %name-devel = %version-%release
 
@@ -43,7 +43,7 @@ Provides: %name-devel = %version-%release
 
 %package python
 Summary: Python package for libplist
-Group: Development/Libraries
+Group: Development/Python
 %py_requires -d
 Requires: python
 BuildRequires: python-devel
