@@ -7,7 +7,7 @@
 
 Name:           %{name}
 Version:        %{version}
-Release:        %mkrel 1
+Release:        %{release}
 Summary:        Library for manipulating Apple Binary and XML Property Lists
 
 Group:          System/Libraries
