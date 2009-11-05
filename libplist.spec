@@ -1,9 +1,11 @@
 %define name libplist
-%define version 0.13
-%define release %mkrel 2
+%define version 0.16
+%define release %mkrel 1
 %define major 0
 %define libname %mklibname plist %major
 %define libnamedev %mklibname -d plist
+%define libnamecxx %mklibname plist++ %major
+%define libnamecxxdev %mklibname -d plist++
 
 Name:           %{name}
 Version:        %{version}
@@ -15,6 +17,7 @@ License:        LGPLv2+
 URL:            http://matt.colyer.name/projects/iphone-linux/
 
 Source0:        http://cloud.github.com/downloads/JonathanBeck/%{name}/%{name}-%{version}.tar.bz2
+Patch0:         libplist-0.16-fix-python-lib-path.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires: libxml2-devel
@@ -41,6 +44,25 @@ Provides: %name-devel = %version-%release
 %description -n %libnamedev
 %{name}, development headers and libraries.
 
+%package -n %libnamecxx
+Summary: C++ binding for libplist
+Group: Development/C++
+Requires: %name >= %version
+
+%description -n %libnamecxx
+C++ bindings for %name
+
+%package -n %libnamecxxdev
+Summary: Development package for libplist++
+Group: Development/C++
+Requires: %libnamecxx = %version
+%define libnamedev %mklibname -d plist
+Provides: %name++-devel = %version-%release
+
+%description -n %libnamecxxdev
+%name, C++ development headers and libraries.
+
+
 %package -n python-plist
 Summary: Python package for libplist
 Group: Development/Python
@@ -54,6 +76,7 @@ BuildRequires: swig
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 export CMAKE_PREFIX_PATH=/usr
@@ -62,13 +85,9 @@ export CMAKE_PREFIX_PATH=/usr
 %make
 
 %install
-export CMAKE_PREFIX_PATH=/usr
+#export CMAKE_PREFIX_PATH=/usr
 rm -rf $RPM_BUILD_ROOT
 %makeinstall_std -C build
-
-# move python bindings to proper location
-%{__mkdir} -pm 755 $RPM_BUILD_ROOT%{python_sitearch}
-%{__mv} $RPM_BUILD_ROOT%{_libdir}/python/site-packages/libplist $RPM_BUILD_ROOT%{python_sitearch}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -84,18 +103,31 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING.LESSER README
 %{_bindir}/plutil
-%{_bindir}/plutil-0.13
+%{_bindir}/plutil-%{version}
 
 %files -n %libname
 %defattr(-,root,root,-)
 %{_libdir}/libplist.so.0
-%{_libdir}/libplist.so.0.0.13
+%{_libdir}/libplist.so.0.%{version}
 
 %files -n %libnamedev
 %defattr(-,root,root,-)
+%{_includedir}/plist
+%{_includedir}/plist/plist.h
+%exclude %{_includedir}/plist/swig/*
+%exclude %{_includedir}/plist/swig
 %{_libdir}/pkgconfig/libplist.pc
 %{_libdir}/libplist.so
-%{_includedir}/plist
+
+%files -n %libnamecxx
+%defattr(-,root,root,-)
+%{_libdir}/libplist++.so*
+
+%files -n %libnamecxxdev
+%defattr(-,root,root,-)
+%{_includedir}/plist/swig
+%exclude %{_includedir}/plist/plist.h
+%{_libdir}/pkgconfig/libplist++.pc
 
 %files -n python-plist
 %defattr(-,root,root,-)
