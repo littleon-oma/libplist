@@ -1,7 +1,7 @@
 %define name libplist
-%define version 0.16
+%define version 1.0
 %define release %mkrel 1
-%define major 0
+%define major 1
 %define libname %mklibname plist %major
 %define libnamedev %mklibname -d plist
 %define libnamecxx %mklibname plist++ %major
@@ -17,7 +17,6 @@ License:        LGPLv2+
 URL:            http://matt.colyer.name/projects/iphone-linux/
 
 Source0:        http://cloud.github.com/downloads/JonathanBeck/%{name}/%{name}-%{version}.tar.bz2
-Patch0:         libplist-0.16-fix-python-lib-path.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires: libxml2-devel
@@ -76,7 +75,6 @@ BuildRequires: swig
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 export CMAKE_PREFIX_PATH=/usr
@@ -107,8 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n %libname
 %defattr(-,root,root,-)
-%{_libdir}/libplist.so.0
-%{_libdir}/libplist.so.0.%{version}
+%{_libdir}/libplist.so.%{major}*
 
 %files -n %libnamedev
 %defattr(-,root,root,-)
@@ -121,15 +118,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n %libnamecxx
 %defattr(-,root,root,-)
-%{_libdir}/libplist++.so*
+%{_libdir}/libplist++.so.%{major}*
 
 %files -n %libnamecxxdev
 %defattr(-,root,root,-)
 %{_includedir}/plist/swig
 %exclude %{_includedir}/plist/plist.h
 %{_libdir}/pkgconfig/libplist++.pc
+%{_libdir}/libplist++.so
 
 %files -n python-plist
 %defattr(-,root,root,-)
-%{python_sitearch}/libplist
+%{python_sitearch}/plist
 
