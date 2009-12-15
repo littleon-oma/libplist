@@ -1,6 +1,6 @@
 %define name libplist
 %define version 1.1
-%define release %mkrel 1
+%define release %mkrel 2
 %define major 1
 %define libname %mklibname plist %major
 %define libnamedev %mklibname -d plist
@@ -57,6 +57,7 @@ Group: Development/C++
 Requires: %libnamecxx = %version
 %define libnamedev %mklibname -d plist
 Provides: %name++-devel = %version-%release
+Conflicts: %libnamecxx < 1.0
 
 %description -n %libnamecxxdev
 %name, C++ development headers and libraries.
