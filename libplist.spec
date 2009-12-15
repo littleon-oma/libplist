@@ -1,5 +1,5 @@
 %define name libplist
-%define version 1.0
+%define version 1.1
 %define release %mkrel 1
 %define major 1
 %define libname %mklibname plist %major
