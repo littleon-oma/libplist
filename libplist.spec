@@ -85,11 +85,11 @@ export CMAKE_PREFIX_PATH=/usr
 
 %install
 #export CMAKE_PREFIX_PATH=/usr
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall_std -C build
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post -n %libname -p /sbin/ldconfig
