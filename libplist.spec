@@ -1,23 +1,19 @@
-%define name libplist
-%define version 1.4
-%define release %mkrel 2
 %define major 1
 %define libname %mklibname plist %major
 %define libnamedev %mklibname -d plist
 %define libnamecxx %mklibname plist++ %major
 %define libnamecxxdev %mklibname -d plist++
 
-Name:           %{name}
-Version:        %{version}
-Release:        %{release}
+Name:           libplist
+Version:        1.8
+Release:        1
 Summary:        Library for manipulating Apple Binary and XML Property Lists
 
 Group:          System/Libraries
 License:        LGPLv2+
-URL:            http://matt.colyer.name/projects/iphone-linux/
+URL:            http://www.libimobiledevice.org/
 
-Source0:        http://cloud.github.com/downloads/JonathanBeck/%{name}/%{name}-%{version}.tar.bz2
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Source0:        http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
 
 BuildRequires: libxml2-devel
 BuildRequires: glib2-devel
@@ -111,8 +107,6 @@ rm -rf %{buildroot}
 %files -n %libnamedev
 %defattr(-,root,root,-)
 %{_includedir}/plist
-%{_includedir}/plist/plist.h
-%exclude %{_includedir}/plist/swig/*
 %exclude %{_includedir}/plist/swig
 %{_libdir}/pkgconfig/libplist.pc
 %{_libdir}/libplist.so
