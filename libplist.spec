@@ -6,7 +6,7 @@
 
 Name:           libplist
 Version:        1.8
-Release:        1
+Release:        2
 Summary:        Library for manipulating Apple Binary and XML Property Lists
 
 Group:          System/Libraries
@@ -15,8 +15,8 @@ URL:            http://www.libimobiledevice.org/
 
 Source0:        http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
 
-BuildRequires: libxml2-devel
-BuildRequires: glib2-devel
+BuildRequires: pkgconfig(libxml-2.0)
+BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: cmake
 
 %description
@@ -83,6 +83,10 @@ export CMAKE_PREFIX_PATH=/usr
 #export CMAKE_PREFIX_PATH=/usr
 rm -rf %{buildroot}
 %makeinstall_std -C build
+# Fix bogus pkgconfig file
+sed -i -e 's,/usr//,/,g;s,-L/usr/%_lib ,,g;/Cflags:/d' %buildroot%_libdir/pkgconfig/*.pc
+# Apparently not seen by automatic stripping
+strip %buildroot%_libdir/python*/site-packages/plist/_plist.so
 
 %clean
 rm -rf %{buildroot}
