@@ -6,7 +6,7 @@
 
 Name:           libplist
 Version:        1.8
-Release:        2
+Release:        3
 Summary:        Library for manipulating Apple Binary and XML Property Lists
 
 Group:          System/Libraries
