@@ -17,6 +17,7 @@ Source0:        http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar
 
 BuildRequires: pkgconfig(libxml-2.0)
 BuildRequires: pkgconfig(glib-2.0)
+BuildRequires: python-cython
 BuildRequires: cmake
 
 %description
@@ -86,7 +87,8 @@ rm -rf %{buildroot}
 # Fix bogus pkgconfig file
 sed -i -e 's,/usr//,/,g;s,-L/usr/%_lib ,,g;/Cflags:/d' %buildroot%_libdir/pkgconfig/*.pc
 # Apparently not seen by automatic stripping
-strip %buildroot%_libdir/python*/site-packages/plist/_plist.so
+strip %buildroot%_libdir/python*/site-packages/plist/_plist.so \
+	%buildroot%_libdir/python*/site-packages/plist.so
 
 %clean
 rm -rf %{buildroot}
@@ -129,4 +131,5 @@ rm -rf %{buildroot}
 %files -n python-plist
 %defattr(-,root,root,-)
 %{python_sitearch}/plist
+%{python_sitearch}/plist.so
 
