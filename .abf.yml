@@ -1,2 +1,4 @@
+removed_sources:
+  libplist-1.8.tar.bz2: dea18ac31cc497dba959bdb459a2a49fb41664c3
 sources:
-  "libplist-1.8.tar.bz2": dea18ac31cc497dba959bdb459a2a49fb41664c3
+  libplist-1.10.tar.bz2: a642bb37eaa4bec428d0b2a4fa8399d80ee73a18

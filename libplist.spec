@@ -5,7 +5,7 @@
 %define libnamecxxdev %mklibname -d plist++
 
 Name:		libplist
-Version:	1.8
+Version:	1.10
 Release:	4
 Summary:	Library for manipulating Apple Binary and XML Property Lists
 
@@ -91,8 +91,8 @@ strip %{buildroot}%{_libdir}/python*/site-packages/plist/_plist.so \
 
 %files
 %doc AUTHORS COPYING.LESSER README
-%{_bindir}/plutil
-%{_bindir}/plutil-%{version}
+%{_bindir}/plistutil
+%{_bindir}/plistutil-%{version}
 
 %files -n %{libname}
 %{_libdir}/libplist.so.%{major}*
