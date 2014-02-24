@@ -58,7 +58,6 @@ Provides:	%{name}++-devel = %{version}-%{release}
 %package -n python-plist
 Summary:	Python package for libplist
 Group:		Development/Python
-%py_requires -d
 Requires:	python
 BuildRequires:	pkgconfig(python)
 BuildRequires:	swig
