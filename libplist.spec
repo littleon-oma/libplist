@@ -6,8 +6,8 @@
 
 Summary:	Library for manipulating Apple Binary and XML Property Lists
 Name:		libplist
-Version:	1.10
-Release:	8
+Version:	1.11
+Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://www.libimobiledevice.org/
