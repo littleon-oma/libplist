@@ -70,7 +70,7 @@ BuildRequires:	swig
 
 %build
 
-%configure \
+%configure2_5x \
 	--disable-static
 
 %make
