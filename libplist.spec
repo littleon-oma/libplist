@@ -13,7 +13,7 @@ License:	LGPLv2+
 Url:		http://www.libimobiledevice.org/
 Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
 
-BuildRequires:	cmake
+BuildRequires:	make
 BuildRequires:	python-cython
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(glib-2.0)
@@ -69,15 +69,14 @@ BuildRequires:	swig
 %setup -q
 
 %build
-export CMAKE_PREFIX_PATH=/usr
-%cmake
+
+%configure \
+	--disable-static
 
 %make
 
 %install
 %makeinstall_std -C build
-# Fix bogus pkgconfig file
-sed -i -e 's,/usr//,/,g;s,-L/usr/%{_lib} ,,g;/Cflags:/d' %{buildroot}%{_libdir}/pkgconfig/*.pc
 # Apparently not seen by automatic stripping
 strip %{buildroot}%{_libdir}/python*/site-packages/plist/_plist.so \
 	%{buildroot}%{_libdir}/python*/site-packages/plist.so
