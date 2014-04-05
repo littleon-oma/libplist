@@ -98,12 +98,10 @@ strip %{buildroot}%{_libdir}/python*/site-packages/plist.so
 %{_libdir}/libplist++.so.%{major}*
 
 %files -n %{devnamecxx}
-%{_includedir}/plist/swig
 %exclude %{_includedir}/plist/plist.h
 %{_libdir}/pkgconfig/libplist++.pc
 %{_libdir}/libplist++.so
 
 %files -n python-plist
-%{python_sitearch}/plist
 %{python_sitearch}/plist.so
 
