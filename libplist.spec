@@ -85,14 +85,13 @@ strip %{buildroot}%{_libdir}/python*/site-packages/plist.so
 %files
 %doc AUTHORS COPYING.LESSER README
 %{_bindir}/plistutil
-%{_bindir}/plistutil-%{version}
+%{_bindir}/plistutil
 
 %files -n %{libname}
 %{_libdir}/libplist.so.%{major}*
 
 %files -n %{devname}
 %{_includedir}/plist
-%exclude %{_includedir}/plist/swig
 %{_libdir}/pkgconfig/libplist.pc
 %{_libdir}/libplist.so
 
