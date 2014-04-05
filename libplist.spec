@@ -76,7 +76,7 @@ BuildRequires:	swig
 make
 
 %install
-%makeinstall_std -C build
+%makeinstall_std 
 # Fix bogus pkgconfig file
 sed -i -e 's,/usr//,/,g;s,-L/usr/%{_lib} ,,g;/Cflags:/d' %{buildroot}%{_libdir}/pkgconfig/*.pc
 # Apparently not seen by automatic stripping
