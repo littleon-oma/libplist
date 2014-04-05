@@ -60,7 +60,7 @@ Summary:	Python package for libplist
 Group:		Development/Python
 Requires:	python
 BuildRequires:	pkgconfig(python)
-BuildRequires:	swig
+#BuildRequires:	swig
 
 %description -n python-plist
 %{name}, python libraries and support
@@ -84,7 +84,6 @@ strip %{buildroot}%{_libdir}/python*/site-packages/plist.so
 
 %files
 %doc AUTHORS COPYING.LESSER README
-%{_bindir}/plistutil
 %{_bindir}/plistutil
 
 %files -n %{libname}
