@@ -80,8 +80,7 @@ make
 # Fix bogus pkgconfig file
 sed -i -e 's,/usr//,/,g;s,-L/usr/%{_lib} ,,g;/Cflags:/d' %{buildroot}%{_libdir}/pkgconfig/*.pc
 # Apparently not seen by automatic stripping
-strip %{buildroot}%{_libdir}/python*/site-packages/plist/_plist.so \
-	%{buildroot}%{_libdir}/python*/site-packages/plist.so
+strip %{buildroot}%{_libdir}/python*/site-packages/plist.so
 
 %files
 %doc AUTHORS COPYING.LESSER README
