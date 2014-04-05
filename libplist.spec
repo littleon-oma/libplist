@@ -73,7 +73,7 @@ BuildRequires:	swig
 %configure \
 	--disable-static
 
-%make
+make
 
 %install
 %makeinstall_std -C build
