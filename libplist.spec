@@ -82,6 +82,11 @@ sed -i -e 's,/usr//,/,g;s,-L/usr/%{_lib} ,,g;/Cflags:/d' %{buildroot}%{_libdir}/
 # Apparently not seen by automatic stripping
 strip %{buildroot}%{_libdir}/python*/site-packages/plist.so
 
+# Temporary fix for broken buidl system. The package libimobiledevice will not build python bindingw without this
+mkdir -p $RPM_BUILD_ROOT/usr/include/plist/cython
+cp cython/plist.pxd $RPM_BUILD_ROOT/usr/include/plist/cython/
+
+
 %files
 %doc AUTHORS COPYING.LESSER README
 %{_bindir}/plistutil
