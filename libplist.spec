@@ -3,15 +3,22 @@
 %define devname %mklibname -d plist
 %define libnamecxx %mklibname plist++ %{major}
 %define devnamecxx %mklibname -d plist++
+%define snapshot 170414
+
 
 Summary:	Library for manipulating Apple Binary and XML Property Lists
 Name:		libplist
-Version:	1.11
-Release:	2
+Version:	1.12
+%if %snapshot
+Source0:	%name-%{snapshot}.tar.xz
+Release:	170414.1
+%else
+Release:	1
+Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
+%endif
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://www.libimobiledevice.org/
-Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
 
 BuildRequires:	make
 BuildRequires:	python-cython
@@ -81,11 +88,6 @@ make
 sed -i -e 's,/usr//,/,g;s,-L/usr/%{_lib} ,,g;/Cflags:/d' %{buildroot}%{_libdir}/pkgconfig/*.pc
 # Apparently not seen by automatic stripping
 strip %{buildroot}%{_libdir}/python*/site-packages/plist.so
-
-# Temporary fix for broken buidl system. The package libimobiledevice will not build python bindingw without this
-mkdir -p $RPM_BUILD_ROOT/usr/include/plist/cython
-cp cython/plist.pxd $RPM_BUILD_ROOT/usr/include/plist/cython/
-
 
 %files
 %doc AUTHORS COPYING.LESSER README
