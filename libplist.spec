@@ -73,9 +73,10 @@ BuildRequires:	pkgconfig(python)
 %{name}, python libraries and support
 
 %prep
-%setup -q
+%setup -qn %{name}
 
 %build
+autoreconf -fiv
 
 %configure2_5x \
 	--disable-static
@@ -111,4 +112,3 @@ strip %{buildroot}%{_libdir}/python*/site-packages/plist.so
 
 %files -n python-plist
 %{python_sitearch}/plist.so
-
