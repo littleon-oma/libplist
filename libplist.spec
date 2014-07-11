@@ -11,9 +11,9 @@ Name:		libplist
 Version:	1.12
 %if %snapshot
 Source0:	%name-%{snapshot}.tar.xz
-Release:	170414.2
+Release:	170414.3
 %else
-Release:	2
+Release:	3
 Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
 %endif
 Group:		System/Libraries
