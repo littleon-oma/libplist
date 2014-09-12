@@ -24,6 +24,7 @@ BuildRequires:	make
 BuildRequires:	python-cython
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(python3)
 
 %description
 libplist is a library for manipulating Apple Binary and XML Property Lists
