@@ -13,7 +13,7 @@ Version:	1.12
 Source0:	%name-%{snapshot}.tar.xz
 Release:	170414.3
 %else
-Release:	3
+Release:	4
 Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
 %endif
 Group:		System/Libraries
@@ -88,7 +88,12 @@ make
 # Fix bogus pkgconfig file
 sed -i -e 's,/usr//,/,g;s,-L/usr/%{_lib} ,,g;/Cflags:/d' %{buildroot}%{_libdir}/pkgconfig/*.pc
 # Apparently not seen by automatic stripping
-strip %{buildroot}%{_libdir}/python*/site-packages/plist.so
+%{__strip} %{buildroot}%{_libdir}/python*/site-packages/plist.so
+
+# daviddavid (workaround since new 1.11 version)
+# FIXME This file is not automatically installed by upstream source while it is built.
+mkdir -p %{buildroot}%{_includedir}/plist/cython
+install -m 0644 cython/plist.pxd %{buildroot}%{_includedir}/plist/cython/
 
 %files
 %doc AUTHORS COPYING.LESSER README
