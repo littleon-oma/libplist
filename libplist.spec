@@ -73,12 +73,12 @@ BuildRequires:	pkgconfig(python)
 %{name}, python libraries and support
 
 %prep
-%setup -qn %{name}
+%setup -q
 
 %build
 autoreconf -fiv
 
-%configure2_5x \
+%configure \
 	--disable-static
 
 make
