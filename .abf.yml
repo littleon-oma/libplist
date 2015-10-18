@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   libplist-1.11.tar.bz2: 1a105757596131e3230382c21e06407090505427
+sources:
+  libplist-1.12.tar.bz2: 48f071c723387637ef2cc2980d4ca0627aab067b

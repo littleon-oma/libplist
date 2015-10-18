@@ -1,4 +1,4 @@
-%define major 2
+%define major 3
 %define libname %mklibname plist %{major}
 %define devname %mklibname -d plist
 %define libnamecxx %mklibname plist++ %{major}
@@ -6,7 +6,7 @@
 
 Summary:	Library for manipulating Apple Binary and XML Property Lists
 Name:		libplist
-Version:	1.11
+Version:	1.12
 Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
