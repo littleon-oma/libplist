@@ -7,7 +7,7 @@
 Summary:	Library for manipulating Apple Binary and XML Property Lists
 Name:		libplist
 Version:	1.12
-Release:	1
+Release:	1.1
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://www.libimobiledevice.org/
@@ -81,6 +81,11 @@ make
 sed -i -e 's,/usr//,/,g;s,-L/usr/%{_lib} ,,g;/Cflags:/d' %{buildroot}%{_libdir}/pkgconfig/*.pc
 # Apparently not seen by automatic stripping
 strip %{buildroot}%{_libdir}/python*/site-packages/plist.so
+
+# daviddavid (workaround since new 1.11 version)
+# FIXME This file is not automatically installed by upstream source while it is built.
+mkdir -p %{buildroot}%{_includedir}/plist/cython
+install -m 0644 cython/plist.pxd %{buildroot}%{_includedir}/plist/cython/
 
 %files
 %doc AUTHORS COPYING.LESSER README
