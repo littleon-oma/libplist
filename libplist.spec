@@ -6,20 +6,19 @@
 
 Summary:	Library for manipulating Apple Binary and XML Property Lists
 Name:		libplist
-Version:	1.12
-Release:	5
+Version:	2.0.0
+Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://www.libimobiledevice.org/
 Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
 BuildRequires:	make
 BuildRequires:	python-cython
-BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(python3)
 
 %description
-libplist is a library for manipulating Apple Binary and XML Property Lists
+libplist is a library for manipulating Apple Binary and XML Property Lists.
 
 %package -n %{libname}
 Group:		System/Libraries
@@ -27,7 +26,7 @@ Summary:	Library for manipulating Apple Binary and XML Property Lists
 Suggests:	%{name} >= %{version}-%{release}
 
 %description -n %{libname}
-libplist is a library for manipulating Apple Binary and XML Property Lists
+libplist is a library for manipulating Apple Binary and XML Property Lists.
 
 %package -n %{devname}
 Summary:	Development package for libplist
@@ -44,7 +43,7 @@ Group:		Development/C++
 Suggests:	%{name} >= %{version}-%{release}
 
 %description -n %{libnamecxx}
-C++ bindings for %{name}
+C++ bindings for %{name}.
 
 %package -n %{devnamecxx}
 Summary:	Development package for libplist++
@@ -63,7 +62,7 @@ BuildRequires:	pkgconfig(python)
 #BuildRequires:	swig
 
 %description -n python-plist
-%{name}, python libraries and support
+%{name}, python libraries and support.
 
 %prep
 %setup -q
@@ -74,10 +73,10 @@ autoreconf -fiv
 %configure \
 	--disable-static
 
-make
+%make
 
 %install
-%makeinstall_std 
+%makeinstall_std
 # Fix bogus pkgconfig file
 sed -i -e 's,/usr//,/,g;s,-L/usr/%{_lib} ,,g;/Cflags:/d' %{buildroot}%{_libdir}/pkgconfig/*.pc
 # Apparently not seen by automatic stripping
