@@ -73,7 +73,7 @@ autoreconf -fiv
 %configure \
 	--disable-static
 
-%make
+%make -j1
 
 %install
 %makeinstall_std
