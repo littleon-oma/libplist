@@ -6,12 +6,12 @@
 
 Summary:	Library for manipulating Apple Binary and XML Property Lists
 Name:		libplist
-Version:	2.0.0
-Release:	3
+Version:	2.1.0
+Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://www.libimobiledevice.org/
-Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
+Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.gz
 BuildRequires:	make
 BuildRequires:	python-cython
 BuildRequires:	pkgconfig(glib-2.0)
@@ -66,6 +66,7 @@ BuildRequires:	pkgconfig(python)
 
 %prep
 %setup -q
+NOCONFIGURE=1 ./autogen.sh
 
 %build
 autoreconf -fiv
@@ -88,7 +89,7 @@ mkdir -p %{buildroot}%{_includedir}/plist/cython
 install -m 0644 cython/plist.pxd %{buildroot}%{_includedir}/plist/cython/
 
 %files
-%doc AUTHORS COPYING.LESSER README
+%doc AUTHORS COPYING.LESSER
 %{_bindir}/plistutil
 
 %files -n %{libname}
