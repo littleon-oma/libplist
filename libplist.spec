@@ -78,22 +78,13 @@ autoreconf -fiv
 %install
 %make_install
 
-# Fix bogus pkgconfig file
-sed -i -e 's,/usr//,/,g;s,-L/usr/%{_lib} ,,g;/Cflags:/d' %{buildroot}%{_libdir}/pkgconfig/*.pc
-# Apparently not seen by automatic stripping
-%{__strip} %{buildroot}%{_libdir}/python*/site-packages/plist.so
-
-# daviddavid (workaround since new 1.11 version)
-# FIXME This file is not automatically installed by upstream source while it is built.
-mkdir -p %{buildroot}%{_includedir}/plist/cython
-install -m 0644 cython/plist.pxd %{buildroot}%{_includedir}/plist/cython/
 
 %files
 %doc AUTHORS COPYING.LESSER
 %{_bindir}/plistutil
 
 %files -n %{libname}
-#{_libdir}/libplist.so.%{major}*
+%{_libdir}/libplist.so.%{major}*
 
 %files -n %{devname}
 %{_includedir}/plist
