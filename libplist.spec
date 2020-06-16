@@ -6,7 +6,7 @@
 
 Summary:	Library for manipulating Apple Binary and XML Property Lists
 Name:		libplist
-Version:	2.1.0
+Version:	2.2.0
 Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
@@ -74,10 +74,11 @@ autoreconf -fiv
 %configure \
 	--disable-static
 
-%make -j1
+%make_build
 
 %install
-%makeinstall_std
+%make_install
+
 # Fix bogus pkgconfig file
 sed -i -e 's,/usr//,/,g;s,-L/usr/%{_lib} ,,g;/Cflags:/d' %{buildroot}%{_libdir}/pkgconfig/*.pc
 # Apparently not seen by automatic stripping
