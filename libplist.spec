@@ -93,7 +93,7 @@ install -m 0644 cython/plist.pxd %{buildroot}%{_includedir}/plist/cython/
 %{_bindir}/plistutil
 
 %files -n %{libname}
-%{_libdir}/libplist.so.%{major}*
+#{_libdir}/libplist.so.%{major}*
 
 %files -n %{devname}
 %{_includedir}/plist
