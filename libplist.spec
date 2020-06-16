@@ -88,8 +88,8 @@ autoreconf -fiv
 
 %files -n %{devname}
 %{_includedir}/plist
-%{_libdir}/pkgconfig/libplist.pc
-%{_libdir}/libplist.so
+#{_libdir}/pkgconfig/libplist.pc
+#{_libdir}/libplist.so
 
 %files -n %{libnamecxx}
 %{_libdir}/libplist++.so.%{major}*
