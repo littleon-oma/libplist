@@ -92,12 +92,12 @@ autoreconf -fiv
 #{_libdir}/libplist.so
 
 %files -n %{libnamecxx}
-%{_libdir}/libplist++.so.%{major}*
+#{_libdir}/libplist++.so.%{major}*
 
 %files -n %{devnamecxx}
 %exclude %{_includedir}/plist/plist.h
-%{_libdir}/pkgconfig/libplist++.pc
-%{_libdir}/libplist++.so
+#{_libdir}/pkgconfig/libplist++.pc
+#{_libdir}/libplist++.so
 
 %files -n python-plist
 %{python_sitearch}/plist.so
