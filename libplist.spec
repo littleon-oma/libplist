@@ -84,7 +84,7 @@ autoreconf -fiv
 %{_bindir}/plistutil
 
 %files -n %{libname}
-%{_libdir}/libplist.so.%{major}*
+#{_libdir}/libplist.so.%{major}*
 
 %files -n %{devname}
 %{_includedir}/plist
