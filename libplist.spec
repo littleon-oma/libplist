@@ -84,6 +84,7 @@ autoreconf -fiv
 %files
 %doc AUTHORS COPYING.LESSER
 %{_bindir}/plistutil
+%{_mandir}/man1/plistutil.1*
 
 %files -n %{libname}
 %{_libdir}/%{name}-%{api}.so.%{major}{,.*}
