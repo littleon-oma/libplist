@@ -1,12 +1,14 @@
-%define major 3
-%define libname %mklibname plist %{major}
+%define major	3
+%define api	2.0
+
+%define libname %mklibname plist %{api} %{major}
 %define devname %mklibname -d plist
-%define libnamecxx %mklibname plist++ %{major}
+%define libnamecxx %mklibname plist++ %{api} %{major}
 %define devnamecxx %mklibname -d plist++
 
 Summary:	Library for manipulating Apple Binary and XML Property Lists
 Name:		libplist
-Version:	2.1.0
+Version:	2.2.0
 Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
@@ -15,7 +17,7 @@ Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.gz
 BuildRequires:	make
 BuildRequires:	python-cython
 BuildRequires:	pkgconfig(glib-2.0)
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(python)
 
 %description
 libplist is a library for manipulating Apple Binary and XML Property Lists.
@@ -66,7 +68,6 @@ BuildRequires:	pkgconfig(python)
 
 %prep
 %setup -q
-NOCONFIGURE=1 ./autogen.sh
 
 %build
 autoreconf -fiv
@@ -74,39 +75,32 @@ autoreconf -fiv
 %configure \
 	--disable-static
 
-%make -j1
+%make_build
 
 %install
-%makeinstall_std
-# Fix bogus pkgconfig file
-sed -i -e 's,/usr//,/,g;s,-L/usr/%{_lib} ,,g;/Cflags:/d' %{buildroot}%{_libdir}/pkgconfig/*.pc
-# Apparently not seen by automatic stripping
-%{__strip} %{buildroot}%{_libdir}/python*/site-packages/plist.so
+%make_install
 
-# daviddavid (workaround since new 1.11 version)
-# FIXME This file is not automatically installed by upstream source while it is built.
-mkdir -p %{buildroot}%{_includedir}/plist/cython
-install -m 0644 cython/plist.pxd %{buildroot}%{_includedir}/plist/cython/
 
 %files
 %doc AUTHORS COPYING.LESSER
 %{_bindir}/plistutil
+%{_mandir}/man1/plistutil.1*
 
 %files -n %{libname}
-%{_libdir}/libplist.so.%{major}*
+%{_libdir}/%{name}-%{api}.so.%{major}{,.*}
 
 %files -n %{devname}
 %{_includedir}/plist
-%{_libdir}/pkgconfig/libplist.pc
-%{_libdir}/libplist.so
+%{_libdir}/pkgconfig/%{name}-%{api}.pc
+%{_libdir}/%{name}-%{api}.so
 
 %files -n %{libnamecxx}
-%{_libdir}/libplist++.so.%{major}*
+%{_libdir}/%{name}++-%{api}.so.%{major}{,.*}
 
 %files -n %{devnamecxx}
 %exclude %{_includedir}/plist/plist.h
-%{_libdir}/pkgconfig/libplist++.pc
-%{_libdir}/libplist++.so
+%{_libdir}/pkgconfig/%{name}++-%{api}.pc
+%{_libdir}/%{name}++-%{api}.so
 
 %files -n python-plist
 %{python_sitearch}/plist.so
