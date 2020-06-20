@@ -1,7 +1,9 @@
-%define major 3
-%define libname %mklibname plist %{major}
+%define major	3
+%define api	2.0
+
+%define libname %mklibname plist %{api} %{major}
 %define devname %mklibname -d plist
-%define libnamecxx %mklibname plist++ %{major}
+%define libnamecxx %mklibname plist++ %{api} %{major}
 %define devnamecxx %mklibname -d plist++
 
 Summary:	Library for manipulating Apple Binary and XML Property Lists
@@ -15,7 +17,7 @@ Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.gz
 BuildRequires:	make
 BuildRequires:	python-cython
 BuildRequires:	pkgconfig(glib-2.0)
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(python)
 
 %description
 libplist is a library for manipulating Apple Binary and XML Property Lists.
@@ -84,20 +86,20 @@ autoreconf -fiv
 %{_bindir}/plistutil
 
 %files -n %{libname}
-#{_libdir}/libplist.so.%{major}*
+%{_libdir}/%{name}-%{api}.so.%{major}{,.*}
 
 %files -n %{devname}
 %{_includedir}/plist
-#{_libdir}/pkgconfig/libplist.pc
-#{_libdir}/libplist.so
+%{_libdir}/pkgconfig/%{name}-%{api}.pc
+%{_libdir}/%{name}-%{api}.so
 
 %files -n %{libnamecxx}
-#{_libdir}/libplist++.so.%{major}*
+%{_libdir}/%{name}++-%{api}.so.%{major}{,.*}
 
 %files -n %{devnamecxx}
 %exclude %{_includedir}/plist/plist.h
-#{_libdir}/pkgconfig/libplist++.pc
-#{_libdir}/libplist++.so
+%{_libdir}/pkgconfig/%{name}++-%{api}.pc
+%{_libdir}/%{name}++-%{api}.so
 
 %files -n python-plist
 %{python_sitearch}/plist.so
