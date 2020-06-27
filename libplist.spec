@@ -73,9 +73,12 @@ BuildRequires:	pkgconfig(python)
 autoreconf -fiv
 
 %configure \
-	--disable-static
+	--disable-static \
+	PYTHON=%{__python3} \
+	CYTHON=%{_bindir}/cython-3
+	
 
-%make_build
+%make_build -j1
 
 %install
 %make_install
