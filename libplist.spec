@@ -73,10 +73,8 @@ BuildRequires:	pkgconfig(python)
 
 %configure \
 	--disable-static \
-	PYTHON=%{__python3} \
-	CYTHON=%{_bindir}/cython-3
+	PYTHON=%{__python3}
 	
-
 %make_build -j1
 
 %install
