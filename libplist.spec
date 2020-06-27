@@ -70,7 +70,6 @@ BuildRequires:	pkgconfig(python)
 %setup -q
 
 %build
-autoreconf -fiv
 
 %configure \
 	--disable-static \
